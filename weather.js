@@ -1,10 +1,13 @@
 let info_div = $(".info-div");
 let body = $("body");
+let city = $(".city");
+let temp = $(".temp");
+let description = $(".description");
 
 function getWeather(lat, lon) {
+    let tempUnit = 'C'
     let celsius = 0;
     let farenheight = 0;
-    let info = "";
     let weather_api = "https://fcc-weather-api.glitch.me/api/current?lat=" +lat+ "&lon=" +lon;
     console.log(weather_api)
     $.getJSON(weather_api, function(data) {
@@ -13,10 +16,9 @@ function getWeather(lat, lon) {
         farenheight += Math.round(celsius * 1.8 + 32);
 
         //Info Div
-        info += "<h2>" +data.name+ "</h2>";
-        info += "<h3>" +farenheight+ "</h3>";
-        info += "<h3>" +data.weather[0].main+ "</h3>";
-        info_div.html(info);
+        city.html(data.name);
+        temp.html(farenheight+ " &#8457;");
+        description.html(data.weather[0].main);
 
         console.log(data.weather[0].main)
 
